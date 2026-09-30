@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "createhardener:hot_hardened_block_slab"
+    },
+    "C": {
+      "item": "createhardener:hardened_component"
+    },
+    "T": {
+      "item": "create:shaft"
+    }
+  },
+  "pattern": [
+    " S ",
+    " C ",
+    " T "
+  ],
+  "result": {
+    "count": 1,
+    "id": "createhardener:blast_turbine_engine"
+  }
+}

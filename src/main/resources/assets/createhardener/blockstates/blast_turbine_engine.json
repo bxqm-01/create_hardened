@@ -1,0 +1,93 @@
+{
+  "_comment": "冲爆引擎的 blockstate：facing（六向，FACING = 输出面）× stage（0 完好 / 1 轻损 / 2 重损 / 3 损毁）。本文件由 build/tools/gen_engine_blockstate.js 生成，别手改。水平四向用 vanilla 的 y 旋转（模型输出朝西：west=0/north=90/east=180/south=270）；竖直朝向 vanilla 转不出来（y 只在水平面转、x 绕 X 轴而模型长轴就在 X 上），所以 up/down 用离线烘焙的 blast_turbine_engine_vertical（输出朝上），down 再加 vanilla 的 x:180。",
+  "variants": {
+    "facing=west,stage=0": {
+      "model": "createhardener:block/blast_turbine_engine"
+    },
+    "facing=west,stage=1": {
+      "model": "createhardener:block/blast_turbine_engine_stage1"
+    },
+    "facing=west,stage=2": {
+      "model": "createhardener:block/blast_turbine_engine_stage2"
+    },
+    "facing=west,stage=3": {
+      "model": "createhardener:block/blast_turbine_engine_stage3"
+    },
+    "facing=north,stage=0": {
+      "model": "createhardener:block/blast_turbine_engine",
+      "y": 90
+    },
+    "facing=north,stage=1": {
+      "model": "createhardener:block/blast_turbine_engine_stage1",
+      "y": 90
+    },
+    "facing=north,stage=2": {
+      "model": "createhardener:block/blast_turbine_engine_stage2",
+      "y": 90
+    },
+    "facing=north,stage=3": {
+      "model": "createhardener:block/blast_turbine_engine_stage3",
+      "y": 90
+    },
+    "facing=east,stage=0": {
+      "model": "createhardener:block/blast_turbine_engine",
+      "y": 180
+    },
+    "facing=east,stage=1": {
+      "model": "createhardener:block/blast_turbine_engine_stage1",
+      "y": 180
+    },
+    "facing=east,stage=2": {
+      "model": "createhardener:block/blast_turbine_engine_stage2",
+      "y": 180
+    },
+    "facing=east,stage=3": {
+      "model": "createhardener:block/blast_turbine_engine_stage3",
+      "y": 180
+    },
+    "facing=south,stage=0": {
+      "model": "createhardener:block/blast_turbine_engine",
+      "y": 270
+    },
+    "facing=south,stage=1": {
+      "model": "createhardener:block/blast_turbine_engine_stage1",
+      "y": 270
+    },
+    "facing=south,stage=2": {
+      "model": "createhardener:block/blast_turbine_engine_stage2",
+      "y": 270
+    },
+    "facing=south,stage=3": {
+      "model": "createhardener:block/blast_turbine_engine_stage3",
+      "y": 270
+    },
+    "facing=up,stage=0": {
+      "model": "createhardener:block/blast_turbine_engine_vertical"
+    },
+    "facing=down,stage=0": {
+      "model": "createhardener:block/blast_turbine_engine_vertical",
+      "x": 180
+    },
+    "facing=up,stage=1": {
+      "model": "createhardener:block/blast_turbine_engine_vertical_stage1"
+    },
+    "facing=down,stage=1": {
+      "model": "createhardener:block/blast_turbine_engine_vertical_stage1",
+      "x": 180
+    },
+    "facing=up,stage=2": {
+      "model": "createhardener:block/blast_turbine_engine_vertical_stage2"
+    },
+    "facing=down,stage=2": {
+      "model": "createhardener:block/blast_turbine_engine_vertical_stage2",
+      "x": 180
+    },
+    "facing=up,stage=3": {
+      "model": "createhardener:block/blast_turbine_engine_vertical_stage3"
+    },
+    "facing=down,stage=3": {
+      "model": "createhardener:block/blast_turbine_engine_vertical_stage3",
+      "x": 180
+    }
+  }
+}

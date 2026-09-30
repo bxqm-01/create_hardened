@@ -1,0 +1,23 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "detect": "createhardener:block/resonant_magnetosensitive_block_detect",
+    "forbid": "createhardener:block/resonant_magnetosensitive_block_forbid",
+    "side": "createhardener:block/resonant_magnetosensitive_block_side_3",
+    "particle": "createhardener:block/resonant_magnetosensitive_block_side_3"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": { "texture": "#detect", "cullface": "north" },
+        "south": { "texture": "#forbid", "cullface": "south" },
+        "up":    { "texture": "#side", "cullface": "up",    "rotation": 270 },
+        "down":  { "texture": "#side", "cullface": "down",  "rotation": 90 },
+        "east":  { "texture": "#side", "cullface": "east" },
+        "west":  { "texture": "#side", "cullface": "west",  "rotation": 180 }
+      }
+    }
+  ]
+}

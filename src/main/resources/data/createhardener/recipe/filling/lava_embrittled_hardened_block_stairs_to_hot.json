@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createhardener:embrittled_hardened_block_stairs"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 100,
+      "fluid": "minecraft:lava"
+    }
+  ],
+  "results": [
+    {
+      "id": "createhardener:hot_hardened_block_stairs"
+    }
+  ]
+}

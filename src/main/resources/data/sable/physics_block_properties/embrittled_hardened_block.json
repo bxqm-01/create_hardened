@@ -1,0 +1,8 @@
+{
+  "priority": 1002,
+  "selector": "#createhardener:embrittled_hardened_block",
+  "properties": {
+    "sable:mass": 0.5,
+    "sable:friction": 2.5
+  }
+}

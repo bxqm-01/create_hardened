@@ -1,0 +1,53 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "create:powdered_obsidian"
+    },
+    {
+      "item": "create:powdered_obsidian"
+    },
+    {
+      "item": "create:powdered_obsidian"
+    },
+    {
+      "item": "create:powdered_obsidian"
+    },
+    {
+      "item": "create:powdered_obsidian"
+    },
+    {
+      "item": "create:powdered_obsidian"
+    },
+    {
+      "item": "create:powdered_obsidian"
+    },
+    {
+      "item": "create:powdered_obsidian"
+    },
+    {
+      "item": "createhardener:ancient_alloy_scrap"
+    },
+    {
+      "item": "createhardener:ancient_alloy_scrap"
+    },
+    {
+      "item": "createhardener:ancient_alloy_scrap"
+    },
+    {
+      "item": "createhardener:ancient_alloy_scrap"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 800,
+      "fluid": "minecraft:lava"
+    }
+  ],
+  "results": [
+    {
+      "amount": 1000,
+      "id": "createhardener:hardened_emulsion"
+    }
+  ]
+}

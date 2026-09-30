@@ -1,0 +1,79 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.146'
+    id 'idea'
+}
+
+// ---------------------------------------------------------------------------
+// 版本号只有一个来源：src/main/resources/META-INF/neoforge.mods.toml 里的 version="…"
+// （同一个文件也是游戏内 mod 列表里 作者 / 描述 / 依赖 的来源，避免两处版本号打架）
+// ---------------------------------------------------------------------------
+def tomlFile = file('src/main/resources/META-INF/neoforge.mods.toml')
+def tomlMatcher = (tomlFile.text =~ /(?m)^version="([^"]+)"\s*$/)
+if (!tomlMatcher.find()) {
+    throw new GradleException("在 ${tomlFile} 里找不到 version=\"...\"")
+}
+version = tomlMatcher.group(1)
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+// 1.21.1 使用 Java 21
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// 编译期依赖：Create / Flywheel / Ponder(内含 Catnip) / Registrate / Sable 都**不随本仓库分发**，
+// 编译前把它们放进 libs/ 目录即可（见 libs/README.md）。
+// 它们只参与编译，不会被 modDevGradle 打进产物；依赖声明在 mods.toml 里。
+// ---------------------------------------------------------------------------
+dependencies {
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+    // 想让 `gradlew runClient` 里也加载它们（开发环境自测）时，把下面这行打开：
+    // runtimeOnly fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}

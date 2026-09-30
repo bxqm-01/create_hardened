@@ -1,0 +1,8 @@
+{
+	"credit": "冲爆引擎第 2 阶段（重损）· 竖直版。复用已烘焙的竖直模型，只换贴图槽",
+	"parent": "createhardener:block/blast_turbine_engine_vertical",
+	"textures": {
+		"4": "createhardener:block/blast_turbine_engine_stage2",
+		"particle": "createhardener:block/blast_turbine_engine_stage2"
+	}
+}

@@ -1,0 +1,26 @@
+{
+  "selector": "createhardener:resonant_magnetosensitive_block",
+  "priority": 1002,
+  "properties": {
+    "sable:mass": 0.5,
+    "sable:friction": 1.0
+  },
+  "overrides": {
+    "power=0": { "sable:mass": 0.5, "sable:friction": 1.0 },
+    "power=1": { "sable:mass": 0.7, "sable:friction": 1.2 },
+    "power=2": { "sable:mass": 1.0, "sable:friction": 1.4 },
+    "power=3": { "sable:mass": 1.2, "sable:friction": 1.6 },
+    "power=4": { "sable:mass": 1.4, "sable:friction": 1.8 },
+    "power=5": { "sable:mass": 1.7, "sable:friction": 2.0 },
+    "power=6": { "sable:mass": 1.9, "sable:friction": 2.2 },
+    "power=7": { "sable:mass": 2.1, "sable:friction": 2.4 },
+    "power=8": { "sable:mass": 2.4, "sable:friction": 2.6 },
+    "power=9": { "sable:mass": 2.6, "sable:friction": 2.8 },
+    "power=10": { "sable:mass": 2.8, "sable:friction": 3.0 },
+    "power=11": { "sable:mass": 3.1, "sable:friction": 3.2 },
+    "power=12": { "sable:mass": 3.3, "sable:friction": 3.4 },
+    "power=13": { "sable:mass": 3.5, "sable:friction": 3.6 },
+    "power=14": { "sable:mass": 3.8, "sable:friction": 3.8 },
+    "power=15": { "sable:mass": 4.0, "sable:friction": 4.0 }
+  }
+}

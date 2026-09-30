@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": { "item": "createhardener:hardened_plate" },
+    "H": { "item": "createhardener:hardened_block" },
+    "C": { "item": "createhardener:hardened_component" },
+    "E": { "item": "create:electron_tube" }
+  },
+  "pattern": [
+    "PHP",
+    "PCE",
+    "PHP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "createhardener:resonant_magnetosensitive_block"
+  }
+}

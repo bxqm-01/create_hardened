@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [ "BBB" ],
+  "key": { "B": { "item": "createhardener:embrittled_hardened_block" } },
+  "result": { "count": 6, "id": "createhardener:embrittled_hardened_block_slab" }
+}

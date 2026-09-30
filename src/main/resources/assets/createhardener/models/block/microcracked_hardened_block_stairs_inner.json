@@ -1,0 +1,4 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": { "bottom": "createhardener:block/microcracked_hardened_block", "top": "createhardener:block/microcracked_hardened_block", "side": "createhardener:block/microcracked_hardened_block" }
+}

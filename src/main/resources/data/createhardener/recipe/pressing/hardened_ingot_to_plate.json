@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "createhardener:hardened_ingot"
+    }
+  ],
+  "results": [
+    {
+      "id": "createhardener:hardened_plate"
+    }
+  ]
+}

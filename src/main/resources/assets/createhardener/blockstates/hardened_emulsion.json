@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "createhardener:block/hardened_emulsion" }
+  }
+}

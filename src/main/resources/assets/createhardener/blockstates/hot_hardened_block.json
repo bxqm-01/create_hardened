@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "createhardener:block/hot_hardened_block" }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "minecraft:ancient_debris"
+    }
+  ],
+  "processing_time": 400,
+  "results": [
+    {
+      "id": "createhardener:ancient_alloy_scrap"
+    },
+    {
+      "chance": 0.8,
+      "id": "minecraft:ancient_debris"
+    }
+  ]
+}

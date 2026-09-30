@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createhardener:weathered_hardened_block"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 100,
+      "fluid": "minecraft:lava"
+    }
+  ],
+  "results": [
+    {
+      "id": "createhardener:hot_hardened_block"
+    }
+  ]
+}

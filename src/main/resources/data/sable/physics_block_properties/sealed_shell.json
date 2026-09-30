@@ -1,0 +1,8 @@
+{
+  "priority": 1002,
+  "selector": "createhardener:sealed_shell",
+  "properties": {
+    "sable:mass": 0.5,
+    "sable:friction": 3.0
+  }
+}

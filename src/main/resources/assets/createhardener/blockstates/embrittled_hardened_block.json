@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "createhardener:block/embrittled_hardened_block" }
+  }
+}

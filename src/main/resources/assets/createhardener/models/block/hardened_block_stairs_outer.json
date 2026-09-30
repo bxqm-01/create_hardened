@@ -1,0 +1,4 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": { "bottom": "createhardener:block/hardened_block", "top": "createhardener:block/hardened_block", "side": "createhardener:block/hardened_block" }
+}

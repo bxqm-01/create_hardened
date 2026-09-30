@@ -1,0 +1,4 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": { "bottom": "createhardener:block/hot_hardened_block", "top": "createhardener:block/hot_hardened_block", "side": "createhardener:block/hot_hardened_block" }
+}

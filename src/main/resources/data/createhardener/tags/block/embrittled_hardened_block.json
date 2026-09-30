@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "createhardener:embrittled_hardened_block",
+    "createhardener:embrittled_hardened_block_slab",
+    "createhardener:embrittled_hardened_block_stairs"
+  ]
+}

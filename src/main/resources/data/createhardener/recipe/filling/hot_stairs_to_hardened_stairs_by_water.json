@@ -1,0 +1,10 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    { "item": "createhardener:hot_hardened_block_stairs" },
+    { "type": "neoforge:single", "amount": 100, "fluid": "minecraft:water" }
+  ],
+  "results": [
+    { "id": "createhardener:hardened_block_stairs" }
+  ]
+}

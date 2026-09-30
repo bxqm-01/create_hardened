@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "createhardener:hardened_block",
+    "createhardener:hardened_block_slab",
+    "createhardener:hardened_block_stairs",
+    "createhardener:microcracked_hardened_block",
+    "createhardener:microcracked_hardened_block_slab",
+    "createhardener:microcracked_hardened_block_stairs",
+    "createhardener:weathered_hardened_block",
+    "createhardener:weathered_hardened_block_slab",
+    "createhardener:weathered_hardened_block_stairs",
+    "createhardener:embrittled_hardened_block",
+    "createhardener:embrittled_hardened_block_slab",
+    "createhardener:embrittled_hardened_block_stairs",
+    "createhardener:hot_hardened_block",
+    "createhardener:hot_hardened_block_slab",
+    "createhardener:hot_hardened_block_stairs"
+  ]
+}

@@ -1,0 +1,40 @@
+# ---- 构建产物 ----
+build/
+out/
+.gradle/
+*.class
+
+# ---- 本地编译依赖（不随仓库分发，见 libs/README.md）----
+libs/*.jar
+
+# ---- 打包产物（发版请用 GitHub Releases，不要提交进仓库）----
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# ---- IDE ----
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# ---- 运行环境 ----
+run/
+runs/
+logs/
+crash-reports/
+
+# ---- 建模 / 临时文件 ----
+*.bbmodel
+*.psd
+*.xcf
+*.tmp
+*.bak
+
+# ---- 系统 ----
+Thumbs.db
+Desktop.ini
+.DS_Store

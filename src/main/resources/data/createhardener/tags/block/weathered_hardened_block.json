@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "createhardener:weathered_hardened_block",
+    "createhardener:weathered_hardened_block_slab",
+    "createhardener:weathered_hardened_block_stairs"
+  ]
+}

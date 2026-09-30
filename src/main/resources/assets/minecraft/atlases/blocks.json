@@ -1,0 +1,16 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "createhardener:block/hardened_fluid_tank_connected"
+    },
+    {
+      "type": "single",
+      "resource": "createhardener:block/hardened_fluid_tank_top_connected"
+    },
+    {
+      "type": "single",
+      "resource": "createhardener:block/hardened_fluid_tank_inner_connected"
+    }
+  ]
+}

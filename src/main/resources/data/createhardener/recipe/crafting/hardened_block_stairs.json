@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [ "B  ", "BB ", "BBB" ],
+  "key": { "B": { "item": "createhardener:hardened_block" } },
+  "result": { "count": 4, "id": "createhardener:hardened_block_stairs" }
+}

@@ -1,0 +1,78 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "createhardener:hardened_plate"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "chance": 80,
+      "id": "createhardener:hardened_component"
+    },
+    {
+      "chance": 10,
+      "id": "createhardener:hardened_plate"
+    },
+    {
+      "chance": 5,
+      "id": "create:shaft"
+    },
+    {
+      "chance": 5,
+      "id": "minecraft:gold_nugget"
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createhardener:incomplete_hardened_component"
+        },
+        {
+          "item": "create:cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "id": "createhardener:incomplete_hardened_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createhardener:incomplete_hardened_component"
+        },
+        {
+          "item": "create:large_cogwheel"
+        }
+      ],
+      "results": [
+        {
+          "id": "createhardener:incomplete_hardened_component"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createhardener:incomplete_hardened_component"
+        },
+        {
+          "tag": "c:nuggets/gold"
+        }
+      ],
+      "results": [
+        {
+          "id": "createhardener:incomplete_hardened_component"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "createhardener:incomplete_hardened_component"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "createhardener:microcracked_hardened_block",
+    "createhardener:microcracked_hardened_block_slab",
+    "createhardener:microcracked_hardened_block_stairs"
+  ]
+}

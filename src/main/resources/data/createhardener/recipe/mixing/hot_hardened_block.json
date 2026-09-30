@@ -1,0 +1,14 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    { "item": "minecraft:iron_ingot" },
+    { "item": "minecraft:iron_ingot" },
+    { "item": "minecraft:iron_ingot" },
+    { "item": "minecraft:iron_ingot" },
+    { "type": "neoforge:single", "amount": 100, "fluid": "createhardener:hardened_emulsion" }
+  ],
+  "results": [
+    { "id": "createhardener:hot_hardened_block" }
+  ]
+}

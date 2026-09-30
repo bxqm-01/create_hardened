@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createhardener:block/sealed_shell"
+    }
+  }
+}

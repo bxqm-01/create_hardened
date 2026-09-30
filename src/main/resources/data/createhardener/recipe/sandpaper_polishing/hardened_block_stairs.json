@@ -1,0 +1,5 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [ { "item": "createhardener:hardened_block_stairs" } ],
+  "results": [ { "id": "createhardener:microcracked_hardened_block_stairs" } ]
+}

@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "createhardener:block/microcracked_hardened_block" }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    { "item": "createhardener:hot_hardened_block_slab" }
+  ],
+  "results": [
+    { "count": 2, "id": "createhardener:hardened_ingot" }
+  ]
+}

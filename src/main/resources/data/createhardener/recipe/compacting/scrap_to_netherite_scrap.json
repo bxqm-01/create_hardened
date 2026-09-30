@@ -1,0 +1,17 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    { "item": "createhardener:ancient_alloy_scrap" },
+    { "item": "createhardener:ancient_alloy_scrap" },
+    { "item": "createhardener:ancient_alloy_scrap" },
+    { "item": "createhardener:ancient_alloy_scrap" },
+    { "item": "createhardener:ancient_alloy_scrap" },
+    { "item": "createhardener:ancient_alloy_scrap" },
+    { "item": "createhardener:ancient_alloy_scrap" },
+    { "item": "createhardener:ancient_alloy_scrap" },
+    { "item": "createhardener:ancient_alloy_scrap" }
+  ],
+  "results": [
+    { "id": "minecraft:netherite_scrap" }
+  ]
+}

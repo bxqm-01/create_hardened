@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "createhardener:item/hardened_emulsion_bucket"
+  }
+}

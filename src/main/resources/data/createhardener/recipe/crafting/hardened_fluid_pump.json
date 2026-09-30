@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "createhardener:hardened_plate"
+    },
+    "C": {
+      "item": "createhardener:hardened_component"
+    }
+  },
+  "pattern": [
+    "PCP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "createhardener:hardened_fluid_pump"
+  }
+}

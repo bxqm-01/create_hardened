@@ -1,0 +1,64 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+
+[[mods]]
+modId="createhardener"
+version="0.1.0-beta"
+displayName="机械动力：硬化剂"
+authors="bxqm-01"
+description='''
+机械动力：硬化剂 / Create Hardened
+
+添加一种会像铜一样风化的"硬化块"：初始硬度与爆炸抗性等同黑曜石，随随机刻依次风化为
+微裂 → 风化 → 脆化，每一档硬度与爆炸抗性都会下降；用黑曜石粉右键可以让它恢复一个阶段（消耗一个）。
+安装航空学（Sable）时，硬化块在物理化结构里的质量为黑曜石的四分之一，摩擦随风化程度升高。
+
+围绕它还长出了：黑曜石塑封剂与伪装外壳、硬化乳浊液、谐振感磁块、
+硬化流体储罐（7×7）与硬化流体泵、以爆炸为燃料的"冲爆引擎"、被爆炸烧红的硬化块与整条硬化材料链。
+'''
+# 想在 mod 列表里显示图标时：把一张 PNG 放到 src/main/resources/ 下，再打开下面这行
+#logoFile="logo.png"
+issueTrackerURL="https://github.com/bxqm-01/create_hardened/issues"
+displayURL="https://github.com/bxqm-01/create_hardened"
+
+[[dependencies.createhardener]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.249,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.createhardener]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1,1.22)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.createhardener]]
+    modId="create"
+    type="required"
+    versionRange="[6.0.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+# ⚠️ Sable 是**硬依赖**：SealShellBlocks 与三个硬化块类直接 implements 它的接口，
+#   HardeningCollisionCallback 还用到 SubLevelPhysicsSystem。不声明的话，没装它的玩家会得到
+#   "整个模组加载失败 + 一堆 NoClassDefFoundError"，而不是一句干净的"缺少依赖 sable"。
+[[dependencies.createhardener]]
+    modId="sable"
+    type="required"
+    versionRange="[1.2.2,)"
+    ordering="AFTER"
+    side="BOTH"
+
+# Mixin 配置声明（NeoForge 1.21 写法，不需要 Gradle 配置混入）。
+# 本模组只有两处注入，都在 dev.createhardener.mixin 下：
+#   ① PumpPressureBoostMixin   —— PumpFluidTransferBehaviour.tick() 的 TAIL 把硬化泵的压力翻一倍。
+#      依据（亲读字节码）：FluidNetwork 里 transferSpeed = max(1, 压力/2)，真正搬流体走的是原版
+#      EXECUTE 的 drain/fill ⇒ 压力翻倍 = 同一转速下合法搬运两倍液体（守恒，不刷液体）。
+#   ② ExplosionChargeMixin     —— Explosion.explode() 的抗性查询 / 破坏判定两处 @Redirect，
+#      把原版算出来的爆炸强度交给冲爆引擎，并让引擎在爆炸里活下来。
+[[mixins]]
+    config="createhardener.mixins.json"

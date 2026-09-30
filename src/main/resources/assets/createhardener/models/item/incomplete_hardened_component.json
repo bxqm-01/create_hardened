@@ -1,0 +1,5 @@
+{
+  "_comment": "系列组装的过渡件（未完成的硬化构件）—— 贴图 hardened_component_undo（用户 2026-09-28 专门画的半成品材质）",
+  "parent": "minecraft:item/generated",
+  "textures": { "layer0": "createhardener:item/hardened_component_undo" }
+}

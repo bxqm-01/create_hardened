@@ -28,7 +28,7 @@
 
 1. Minecraft **1.21.1** + NeoForge **21.1.249+**
 2. `mods/` 里放好 **Create 6.0.10+** 与 **Sable 1.2.2+**
-3. 把 `createhardener-<版本>.jar` 放进 `mods/`
+3. 从 [Releases](https://github.com/bxqm-01/create_hardened/releases) 下载 `createhardener-<版本>.jar`，放进 `mods/`
 
 > ⚠️ **Sable 是硬依赖**：塑封外壳与硬化块的物理回调直接用到了它的 API，没装会让模组加载失败。
 
@@ -62,6 +62,14 @@ libs/                                      编译期依赖 jar（不入库，见
 
 **0.1.0-beta**：内容已齐、可正常游玩，仍在打磨。已知问题与未完成项见 [CHANGELOG.md](CHANGELOG.md)。
 
+## AI 披露
+
+本模组在开发过程中使用了 **AI 辅助（DeepSeek 系列模型，经由 DeepSeek Harness 的模组开发工作流）**：
+
+- **AI 参与**：代码编写与整合、资源整理（模型 / 方块状态 / 配方 / 标签的生成与校验）、中英文文本、构建脚本、本 README 与发布元数据。
+- **人工完成**：玩法设计、数值平衡（硬度 / 爆炸抗性 / 风化概率 / 引擎参数等全部由作者拍板）、贴图绘制、以及游戏内的实测与验收。
+- 所有内容在上线前均经过人工检查与游戏内完整测试。
+
 ## 授权与致谢
 
 本项目以 **MIT** 授权发布，见 [LICENSE](LICENSE)。
@@ -69,7 +77,7 @@ libs/                                      编译期依赖 jar（不入库，见
 - [Create](https://github.com/Creators-of-Create/Create) —— 本模组完全建立在它的动能 / 流体 / 应力系统之上
 - [Sable](https://github.com/ryanhcode/sable) —— 子世界（物理化结构）库，塑封与硬化块的物理行为依赖它
 - [Flywheel](https://github.com/Engine-Room/Flywheel) / Ponder —— Create 自带的渲染与思索库
-- 本模组的贴图与模型由作者自制
+- 贴图：本模组全部贴图由作者绘制。方块模型：储罐与泵的模型参照 Create 原版改写，其余模型为自制
 
 ## 反馈
 

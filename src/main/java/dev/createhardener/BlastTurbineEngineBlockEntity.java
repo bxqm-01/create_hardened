@@ -4,6 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -49,8 +52,10 @@ import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
  *   阶段 0(完好) → 1(轻损) → 2(重损) → 3(损毁)
  *   ★ 四个阶段**全都正常出力**（转速/池/衰减全不变）—— 阶段只影响外观
  *   ★ 已经在第 3 阶段时**再挨一次爆炸 ⇒ 方块被直接摧毁**（掉落自身，玩家要重造一台）
- *   自然冷却：每 **1.6 秒**降一个阶段；六个相邻面每贴着一个硬化块加快 0.3 秒、最多算 4 个 ⇒ 最快 0.4 秒
- *   （2026-09-28 用户把基准从 2.0 调到 1.6："稍微调快一点，要不然数值不太平衡"）
+ *   自然冷却：基准 **1.6 秒**降一个阶段；**六个相邻面各自贡献一个刻数偏移（逐面散热，2026-09-30 用户定）**：
+ *     冰 / 未风化硬化块 −0.3 秒、微裂 −0.2、风化 −0.1、脆化 0、{@code #createhardener:engine_coolants} −0.1、
+ *     **烧红的硬化块 +0.3 秒（反向拖慢）**
+ *   ⚠️ 实际上只有 **4 个面能贴**（一面接爆炸、一面出轴）⇒ 现实最快 0.4 秒、最慢（4 面全烧红）2.8 秒
  *   ⚠️ **挨炸会重置这个计时**（beta99 修）—— 冷却只在"没在挨炸"时累积，否则高频轰炸永远攒不起来、
  *      也就永远攒不住档位（用户实机反馈"转化机制很奇怪、毁不掉"就是这个原因）
  *   ⇒ 于是"允许的爆炸间隔 = 冷却时间"：间隔够大就能把档位降回来（**停手能救**），贪高频就会被摧毁
@@ -84,10 +89,43 @@ public class BlastTurbineEngineBlockEntity extends GeneratingKineticBlockEntity 
     public static final float PROMOTE_CHANCE = 0.5F;
     /** 自然冷却的基础间隔：**1.6 秒（32 刻）**降一个阶段（用户 2026-09-28：原来 2 秒偏慢，调成 1.6）。 */
     public static final int COOL_TICKS_BASE = 32;
-    /** 六个相邻面每贴着一个硬化块，冷却加快 0.3 秒（6 刻）。 */
-    public static final int COOL_TICKS_PER_HARDENED = 6;
-    /** 最多计 4 个硬化块 ⇒ 最快 1.6 − 4 × 0.3 = 0.4 秒（8 刻）。 */
-    public static final int MAX_HARDENED_NEIGHBOURS = 4;
+
+    // ---------------- 逐面散热：六个相邻面各自给一个刻数偏移（2026-09-30 用户定稿） ----------------
+    // 语义：这一面"有没有在帮引擎散热"。正数 = 反向拖慢（这一面比环境还热）。
+
+    /** 面贴**未风化硬化块**（第 0 档）：加快 0.3 秒。 */
+    public static final int COOL_OFFSET_STAGE_0 = -6;
+    /** 面贴**微裂**（第 1 档）：加快 0.2 秒。 */
+    public static final int COOL_OFFSET_STAGE_1 = -4;
+    /** 面贴**风化**（第 2 档）：加快 0.1 秒。 */
+    public static final int COOL_OFFSET_STAGE_2 = -2;
+    /** 面贴**脆化**（第 3 档）：**0** —— 风化到头了，没有散热能力。 */
+    public static final int COOL_OFFSET_STAGE_3 = 0;
+    /** 面贴**冰**（原版 {@code #minecraft:ice}）：与第 0 档硬化块**同效**（用户原话："冷却效率和硬化块相同"）。 */
+    public static final int COOL_OFFSET_ICE = -6;
+    /** 面贴**冷却剂标签**里的方块（{@code #createhardener:engine_coolants}，默认四种金属块）：加快 0.1 秒。 */
+    public static final int COOL_OFFSET_COOLANT = -2;
+    /** 面贴**烧红的硬化块**（整砖/半砖/楼梯）：**反向拖慢** 0.3 秒 —— 它自己还在散热，只会把引擎捂热。 */
+    public static final int COOL_OFFSET_HOT = 6;
+
+    /**
+     * 冷却间隔下界 = **8 刻（0.4 秒）**。
+     * <p>⚠️ 实际上只有 **4 个面能贴**（一面接爆炸、一面出轴），所以现实最快就是 32 − 4×6 = 8 刻 = 0.4 秒
+     * （与旧版"4 个硬化块"的最快值一致）；这个钳制只是防七面/异常取值。
+     */
+    public static final int COOL_TICKS_MIN = 8;
+    /**
+     * 冷却间隔上界 = **68 刻（3.4 秒）**（六面全贴烧红块）。
+     * <p>现实最慢（4 面全烧红）= 32 + 4×6 = 56 刻 = **2.8 秒**。
+     */
+    public static final int COOL_TICKS_MAX = 68;
+
+    /**
+     * 数据驱动的"冷却剂"方块标签：默认 = {@code #c:storage_blocks/{iron,copper,gold,netherite}}，
+     * 整合包/数据包可以往 {@code data/createhardener/tags/block/engine_coolants.json} 里加更多方块。
+     */
+    public static final TagKey<Block> ENGINE_COOLANTS = BlockTags.create(
+            ResourceLocation.fromNamespaceAndPath("createhardener", "engine_coolants"));
 
     private static final String NBT_STRESS = "BlastStress";
     private static final String NBT_STAGE = "BlastStage";
@@ -254,9 +292,13 @@ public class BlastTurbineEngineBlockEntity extends GeneratingKineticBlockEntity 
     }
 
     /**
-     * 自然冷却：每 {@link #COOL_TICKS_BASE} 刻降一个阶段；六个相邻面每贴着一个硬化块少
-     * {@link #COOL_TICKS_PER_HARDENED} 刻、最多算 {@link #MAX_HARDENED_NEIGHBOURS} 个
-     * ⇒ **1.6 / 1.3 / 1.0 / 0.7 / 0.4 秒**（用户 2026-09-28 把基准从 2.0 调到 1.6）。
+     * 自然冷却：基准 {@link #COOL_TICKS_BASE} 刻（1.6 秒）降一个阶段，**再按六个相邻面逐个加减刻数**。
+     *
+     * <p>⚠️ 与旧版的区别：旧版是"数有几个硬化块、每个 −0.3 秒（最多 4 个）"，只认硬化块；
+     * 新版是**逐面散热** —— 每个面**各自**看贴着的是什么（见 {@link #faceCoolingTicks}），
+     * 冰可以和硬化块一样有效、而烧红块反而会拖慢。
+     *
+     * <p>现实范围（只有 4 个面能贴）：**0.4 秒（4 面全是冰/第 0 档硬化块）～ 2.8 秒（4 面全烧红）**。
      */
     private void tickCooling() {
         if (stage <= 0) {
@@ -274,26 +316,58 @@ public class BlastTurbineEngineBlockEntity extends GeneratingKineticBlockEntity 
         }
     }
 
-    /** 冷却间隔（刻）= 32 − 6 × min(4, 周围硬化块数) ⇒ 1.6 / 1.3 / 1.0 / 0.7 / 0.4 秒。 */
+    /**
+     * 冷却间隔（刻）= {@link #COOL_TICKS_BASE} ＋ 六个相邻面的偏移之和，钳制在
+     * [{@link #COOL_TICKS_MIN}, {@link #COOL_TICKS_MAX}]。
+     *
+     * <p>⚠️ 扫描仍然遍历**六个方向**、不需要特判输出面/接收面 —— 那两面贴着的东西本来就该照常参与
+     * （输出面接的是轴，接收面朝爆炸；真有方块贴着，让它算数反而更直观）。
+     */
     private int coolIntervalTicks() {
-        return COOL_TICKS_BASE - COOL_TICKS_PER_HARDENED * Math.min(MAX_HARDENED_NEIGHBOURS, countHardenedNeighbours());
+        if (level == null) {
+            return COOL_TICKS_BASE;
+        }
+        int offset = 0;
+        for (Direction dir : Direction.values()) {
+            offset += faceCoolingTicks(level.getBlockState(worldPosition.relative(dir)));
+        }
+        return Mth.clamp(COOL_TICKS_BASE + offset, COOL_TICKS_MIN, COOL_TICKS_MAX);
     }
 
     /**
-     * 数六个相邻面里有几个硬化块（整砖/半砖/楼梯、任意风化档都算）。
-     * 用 {@link Hardening#stageOfBlock} 判 —— 它只认我们自己的方块（顺便把原版铜排除在外）。
+     * 一个相邻面对冷却间隔的贡献（刻）—— **负数 = 加快散热，正数 = 拖慢**。
+     *
+     * <p>判定顺序：① 烧红的硬化块（必须最先判 —— 它不属于硬化块族的档位表）；② 冰；
+     * ③ 硬化块四档（越风化越不散热）；④ {@code #createhardener:engine_coolants} 标签；其余一律 0。
      */
-    private int countHardenedNeighbours() {
-        if (level == null) {
-            return 0;
+    private int faceCoolingTicks(BlockState state) {
+        Block block = state.getBlock();
+        if (isHotHardened(block)) {
+            return COOL_OFFSET_HOT;
         }
-        int found = 0;
-        for (Direction dir : Direction.values()) {
-            if (Hardening.stageOfBlock(level.getBlockState(worldPosition.relative(dir)).getBlock()) >= 0) {
-                found++;
-            }
+        if (state.is(BlockTags.ICE)) {
+            return COOL_OFFSET_ICE;
         }
-        return found;
+        int neighbourStage = Hardening.stageOfBlock(block);
+        if (neighbourStage >= 0) {
+            return switch (neighbourStage) {
+                case 0 -> COOL_OFFSET_STAGE_0;
+                case 1 -> COOL_OFFSET_STAGE_1;
+                case 2 -> COOL_OFFSET_STAGE_2;
+                default -> COOL_OFFSET_STAGE_3;
+            };
+        }
+        if (state.is(ENGINE_COOLANTS)) {
+            return COOL_OFFSET_COOLANT;
+        }
+        return 0;
+    }
+
+    /** 是否是**烧红的硬化块**（整砖/半砖/楼梯三者之一）—— 它贴着引擎会**拖慢**冷却。 */
+    private static boolean isHotHardened(Block block) {
+        return block == CreateHardener.HOT_HARDENED_BLOCK.get()
+                || block == CreateHardener.HOT_HARDENED_BLOCK_SLAB.get()
+                || block == CreateHardener.HOT_HARDENED_BLOCK_STAIRS.get();
     }
 
     /**

@@ -4,7 +4,7 @@ license="MIT"
 
 [[mods]]
 modId="createhardener"
-version="0.1.0-beta"
+version="0.1.1-beta"
 displayName="机械动力：硬化剂"
 authors="bxqm-01"
 description='''
@@ -43,9 +43,10 @@ displayURL="https://github.com/bxqm-01/create_hardened"
     ordering="AFTER"
     side="BOTH"
 
-# ⚠️ Sable 是**硬依赖**：SealShellBlocks 与三个硬化块类直接 implements 它的接口，
-#   HardeningCollisionCallback 还用到 SubLevelPhysicsSystem。不声明的话，没装它的玩家会得到
-#   "整个模组加载失败 + 一堆 NoClassDefFoundError"，而不是一句干净的"缺少依赖 sable"。
+# ⚠️ 2026-09-26 补：本模组是**硬依赖** Sable 的 ——
+#   SealShellBlocks 与三个硬化块类直接 implements 它的接口，HardeningCollisionCallback 还用
+#   SubLevelPhysicsSystem。不声明的话，没装航空学的玩家会得到"整个模组加载失败 + 一堆
+#   NoClassDefFoundError"，而不是一句干净的"缺少依赖 sable"。
 [[dependencies.createhardener]]
     modId="sable"
     type="required"
@@ -53,12 +54,13 @@ displayURL="https://github.com/bxqm-01/create_hardened"
     ordering="AFTER"
     side="BOTH"
 
-# Mixin 配置声明（NeoForge 1.21 写法，不需要 Gradle 配置混入）。
+# Mixin 配置声明（NeoForge 1.21 写法，不需要 Gradle）。
 # 本模组只有两处注入，都在 dev.createhardener.mixin 下：
 #   ① PumpPressureBoostMixin   —— PumpFluidTransferBehaviour.tick() 的 TAIL 把硬化泵的压力翻一倍。
 #      依据（亲读字节码）：FluidNetwork 里 transferSpeed = max(1, 压力/2)，真正搬流体走的是原版
 #      EXECUTE 的 drain/fill ⇒ 压力翻倍 = 同一转速下合法搬运两倍液体（守恒，不刷液体）。
 #   ② ExplosionChargeMixin     —— Explosion.explode() 的抗性查询 / 破坏判定两处 @Redirect，
 #      把原版算出来的爆炸强度交给冲爆引擎，并让引擎在爆炸里活下来。
+#   （2026-09-27：原先那处 FluidPipeBlock.canConnectTo 的注入，随"硬化管道整套删除"一起去掉了。）
 [[mixins]]
     config="createhardener.mixins.json"

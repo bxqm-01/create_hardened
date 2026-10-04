@@ -34,5 +34,32 @@
   "item.createhardener.incomplete_hardened_component": "Incomplete Hardened Component",
   "block.createhardener.hardened_fluid_pump": "Hardened Fluid Pump",
   "block.createhardener.blast_turbine_engine": "Blast Turbine Engine",
-  "createhardener.goggles.engine_stage": "Damage stage: %s / %s"
+  "createhardener.goggles.engine_stage": "Damage stage: %s / %s",
+  "tooltip.createhardener.obsidian_sealant": "Reinforces any full block that has no interaction, shielding it from one explosion or one dig.",
+
+  "createhardener.ponder.hb01.header": "Hardened Block (1)",
+  "createhardener.ponder.hb02.header": "Hardened Block (2)",
+  "createhardener.ponder.hb03.header": "Hardened Block (3)",
+  "createhardener.ponder.hhb01.header": "Hot Hardened Block",
+  "createhardener.ponder.rmb01.header": "Resonant Magnetosensitive Block (1)",
+  "createhardener.ponder.rmb02.header": "Resonant Magnetosensitive Block (2)",
+  "createhardener.ponder.bte01.header": "Blast Turbine Engine",
+  "createhardener.ponder.hft01.header": "Hardened Fluid Tank",
+  "createhardener.ponder.hfp01.header": "Hardened Fluid Pump",
+
+  "createhardener.ponder.rmb01.text_1": "The Resonant Magnetosensitive Block reads the redstone strength of the block in front of it and copies it onto itself. It does not spread redstone itself (weak charge) - its signal has to be read with a comparator, but blocks of the same kind can read each other directly.",
+  "createhardener.ponder.rmb02.text_1": "A Resonant Magnetosensitive Block changes its hardness, blast resistance, friction and mass according to the redstone strength it receives.",
+  "createhardener.ponder.hfp01.text_1": "It consumes twice the stress and moves fluids twice as fast.",
+  "createhardener.ponder.hft01.text_1": "This tank goes beyond the limits of a normal tank - it can be up to 7x7. However, it cannot be used as a boiler.",
+
+  "createhardener.ponder.bte01.text_1": "A Blast Turbine Engine turns explosions into stress.",
+  "createhardener.ponder.bte01.text_2": "Be careful though: explosions can overheat a Blast Turbine Engine and damage it. Hardened Blocks (the fresher the better), ice, and the metal blocks in the coolant tag (iron / copper / gold / netherite blocks) all speed up its natural cooling (each of the six faces counts, base rate 1.6s per stage), while hot hardened blocks slow it down. Explosions can also turn any kind of hardened block into a hot one - you have to pick a way to cool them down.",
+
+  "createhardener.ponder.hb01.text_1": "Hardened Blocks come in several forms and can be changed in several ways: ice, water, sandpaper polishing, natural weathering, natural cooling, or physical impacts.",
+  "createhardener.ponder.hb02.text_1": "Hardened Blocks do weather naturally, but that usually takes a very long time. It goes much faster when other hardened blocks - or water - are around, so remember to clean up weathered blocks in time. Blocks that have weathered can be brought back with explosions or obsidian powder.",
+  "createhardener.ponder.hb03.text_1": "Hardened Blocks get worse when they take an impact.",
+  "createhardener.ponder.hhb01.text_1": "A hot hardened block next to water is quenched into a microcracked hardened block.",
+  "createhardener.ponder.hhb01.text_2": "A hot hardened block next to ice is quenched into a weathered hardened block.",
+  "createhardener.ponder.hhb01.text_3": "Watered by a spout, it cools straight back into a plain hardened block.",
+  "createhardener.ponder.hhb01.text_4": "Left alone it also cools back into a plain hardened block (60 seconds in game - here we just show the idea)."
 }

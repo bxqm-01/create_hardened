@@ -1,7 +1,13 @@
 package dev.createhardener.sealant;
 
+import java.util.List;
+
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 
 import dev.createhardener.CreateHardener;
@@ -37,5 +43,18 @@ public class ObsidianSealantItem extends Item {
             return InteractionResult.PASS;
         }
         return InteractionResult.SUCCESS;   // 只吞点击；框选逻辑见 SealantClientEvents
+    }
+
+    /**
+     * 悬浮说明（用户 2026-10-04 指定的文案）：
+     * "可以把任意完整且不进行交互的方块强化，可以为方块抵挡一次爆炸或挖掘"。
+     *
+     * <p>文案走语言键 {@code tooltip.createhardener.obsidian_sealant}（zh_cn / en_us 都有）。
+     */
+    @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context,
+                                List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.createhardener.obsidian_sealant")
+                .withStyle(ChatFormatting.GRAY));
     }
 }

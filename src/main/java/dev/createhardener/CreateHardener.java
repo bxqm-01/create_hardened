@@ -376,6 +376,11 @@ public class CreateHardener {
         NeoForge.EVENT_BUS.register(ScorchingEvents.class);
         // 注液器"浇在已放置的烧红方块上 → 普通硬化块"（Create 官方 BlockSpoutingBehaviour）
         modEventBus.addListener(this::registerSpouting);
+
+        // 思索（Ponder）场景：**客户端专用**，类只在客户端被加载（专用服务器下这段不会执行）
+        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
+            dev.createhardener.client.ponder.HardenerPonderSetup.init();
+        }
     }
 
     /** 注水消耗量（与`烧红块 + 100mB 水 → 硬化块`那条注液配方保持一致）。 */

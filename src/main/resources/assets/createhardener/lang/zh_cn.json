@@ -34,5 +34,32 @@
   "item.createhardener.incomplete_hardened_component": "未完成的硬化构件",
   "block.createhardener.hardened_fluid_pump": "硬化流体泵",
   "block.createhardener.blast_turbine_engine": "冲爆引擎",
-  "createhardener.goggles.engine_stage": "损伤阶段：%s / %s"
+  "createhardener.goggles.engine_stage": "损伤阶段：%s / %s",
+  "tooltip.createhardener.obsidian_sealant": "可以把任意完整且不进行交互的方块强化，可以为方块抵挡一次爆炸或挖掘",
+
+  "createhardener.ponder.hb01.header": "硬化块（一）",
+  "createhardener.ponder.hb02.header": "硬化块（二）",
+  "createhardener.ponder.hb03.header": "硬化块（三）",
+  "createhardener.ponder.hhb01.header": "烧红硬化块",
+  "createhardener.ponder.rmb01.header": "谐振感磁块（一）",
+  "createhardener.ponder.rmb02.header": "谐振感磁块（二）",
+  "createhardener.ponder.bte01.header": "冲爆引擎",
+  "createhardener.ponder.hft01.header": "硬化流体储罐",
+  "createhardener.ponder.hfp01.header": "硬化流体泵",
+
+  "createhardener.ponder.rmb01.text_1": "谐振感磁块可以读取前方方块的红石信号强度并传递到自身身上，自身不会扩散红石信号（弱充能），它的红石信号需要比较器读出，它自身对于自身有特例，可以直接读取",
+  "createhardener.ponder.rmb02.text_1": "谐振感磁块会受到红石信号强度的变化而改变自身的硬度、爆炸抗性、摩擦与质量等数值",
+  "createhardener.ponder.hfp01.text_1": "消耗双倍应力，可以获得双倍的运输速度",
+  "createhardener.ponder.hft01.text_1": "这个流体储罐能够突破一般储罐的限制，它的大小最高可以达到 7×7 大小，不过它无法作为锅炉使用",
+
+  "createhardener.ponder.bte01.text_1": "冲爆引擎可以根据爆炸转化为应力",
+  "createhardener.ponder.bte01.text_2": "不过要注意，爆炸可能会导致冲爆引擎产生过热损伤，通过硬化块（越新鲜越有效）、冰、以及冷却剂标签里的金属块（铁/铜/金/下界合金块）之类的都可以使它的自然冷却速度提升（六个面各自生效，基准 1.6 秒降一级），不过烧红的硬化块会导致自然冷却速度下降；爆炸会导致所有类型的硬化块都可能变为烧红硬化块，玩家需要选择手段将它们冷却",
+
+  "createhardener.ponder.hb01.text_1": "硬化块存在多种不同的形态，他们需要通过多种方式进行转化，使用冰、水、磨砂或是自然风化、自然冷却、物理撞击之类的方式",
+  "createhardener.ponder.hb02.text_1": "硬化块会因为自然风化，不过那通常需要很长时间，不过，当一个硬化块周围存在其他硬化块时，以及周围存在水时会加快这个过程，所以一定要注意及时清理掉风化状态的方块，那些被风化的硬化块通过爆炸或是黑曜石粉末可以使他们有办法回到更好的状态",
+  "createhardener.ponder.hb03.text_1": "硬化块会因为受到冲击而导致状态变差",
+  "createhardener.ponder.hhb01.text_1": "紧挨着水的烧红硬化块会被淬成微裂硬化块",
+  "createhardener.ponder.hhb01.text_2": "紧挨着冰的烧红硬化块会被淬成风化硬化块",
+  "createhardener.ponder.hhb01.text_3": "被注液器浇上水则会直接冷却回普通硬化块",
+  "createhardener.ponder.hhb01.text_4": "放着不管它也会自然冷却回普通硬化块（实际要 60 秒，这里只演示一下这个过程）"
 }
